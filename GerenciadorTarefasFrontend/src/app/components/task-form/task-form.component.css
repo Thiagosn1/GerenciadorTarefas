@@ -1,0 +1,139 @@
+:host {
+  display: block;
+  width: 100%;
+  --surface: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --ring: rgba(37, 99, 235, 0.2);
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --danger: #dc2626;
+  --danger-soft: #fef2f2;
+}
+
+.form-card {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.1);
+}
+
+h2 {
+  margin: 0 0 18px;
+  font-size: 19px;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+form {
+  display: grid;
+  gap: 9px;
+}
+
+label {
+  font-size: 14px;
+  color: #334155;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 13px;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--text);
+  background: #f8fafc;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--ring);
+  background: #ffffff;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+.error {
+  margin: 0;
+  font-size: 13px;
+  color: var(--danger);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+button {
+  height: 38px;
+  border-radius: 9px;
+  border: 1px solid transparent;
+  font-weight: 700;
+  padding: 0 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  background: #ffffff;
+  color: #334155;
+  border-color: #cbd5e1;
+}
+
+.btn-secondary:hover {
+  background: #f8fafc;
+}
+
+@media (max-width: 768px) {
+  .form-card {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-card {
+    border-radius: 12px;
+    padding: 14px;
+  }
+
+  .actions {
+    gap: 8px;
+    justify-content: flex-end;
+  }
+}

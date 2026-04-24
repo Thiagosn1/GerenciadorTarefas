@@ -1,0 +1,176 @@
+<main class="page">
+  <section class="header">
+    <div>
+      <h1>Minhas Tarefas</h1>
+      <p>Gerencie suas tarefas pendentes e concluidas.</p>
+    </div>
+
+    <button class="new-task-btn" type="button" (click)="openCreateForm()">+ Nova Tarefa</button>
+  </section>
+
+  <section class="toolbar">
+    <label for="statusFilter">Filtrar por status:</label>
+    <select
+      id="statusFilter"
+      [value]="statusFilter()"
+      (change)="onFilterChange($any($event.target).value)"
+    >
+      <option value="TODAS">Todas</option>
+      <option value="Pendente">Pendente</option>
+      <option value="Concluída">Concluída</option>
+    </select>
+  </section>
+
+  @if (error()) {
+    <p class="error-banner">{{ error() }}</p>
+  }
+
+  <section class="table-wrapper">
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th [attr.aria-sort]="getAriaSort('titulo')">
+              <button type="button" class="sort-btn" (click)="setSort('titulo')">
+                <span class="sort-label">Titulo</span>
+                <span
+                  class="sort-icon"
+                  [class.asc]="sortColumn() === 'titulo' && sortDirection() === 'asc'"
+                  [class.desc]="sortColumn() === 'titulo' && sortDirection() === 'desc'"
+                >
+                  <span class="up"></span>
+                  <span class="down"></span>
+                </span>
+              </button>
+            </th>
+            <th [attr.aria-sort]="getAriaSort('descricao')">
+              <button type="button" class="sort-btn" (click)="setSort('descricao')">
+                <span class="sort-label">Descricao</span>
+                <span
+                  class="sort-icon"
+                  [class.asc]="sortColumn() === 'descricao' && sortDirection() === 'asc'"
+                  [class.desc]="sortColumn() === 'descricao' && sortDirection() === 'desc'"
+                >
+                  <span class="up"></span>
+                  <span class="down"></span>
+                </span>
+              </button>
+            </th>
+            <th class="col-center" [attr.aria-sort]="getAriaSort('status')">
+              <button type="button" class="sort-btn center" (click)="setSort('status')">
+                <span class="sort-label">Status</span>
+                <span
+                  class="sort-icon"
+                  [class.asc]="sortColumn() === 'status' && sortDirection() === 'asc'"
+                  [class.desc]="sortColumn() === 'status' && sortDirection() === 'desc'"
+                >
+                  <span class="up"></span>
+                  <span class="down"></span>
+                </span>
+              </button>
+            </th>
+            <th class="col-center" [attr.aria-sort]="getAriaSort('dataCriacao')">
+              <button type="button" class="sort-btn center" (click)="setSort('dataCriacao')">
+                <span class="sort-label">Data de Criacao</span>
+                <span
+                  class="sort-icon"
+                  [class.asc]="sortColumn() === 'dataCriacao' && sortDirection() === 'asc'"
+                  [class.desc]="sortColumn() === 'dataCriacao' && sortDirection() === 'desc'"
+                >
+                  <span class="up"></span>
+                  <span class="down"></span>
+                </span>
+              </button>
+            </th>
+            <th class="col-center">Acoes</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (loading()) {
+            <tr>
+              <td colspan="5" class="empty">Carregando tarefas...</td>
+            </tr>
+          } @else if (paginatedTasks().length === 0) {
+            <tr>
+              <td colspan="5" class="empty">Nenhuma tarefa encontrada.</td>
+            </tr>
+          } @else {
+            @for (task of paginatedTasks(); track task.id) {
+              <tr>
+                <td>{{ task.titulo }}</td>
+                <td>{{ task.descricao }}</td>
+                <td class="col-center">
+                  <span class="status" [class.status-complete]="task.status === 'Concluída'">
+                    {{ formatStatus(task.status) }}
+                  </span>
+                </td>
+                <td class="col-center col-date">{{ formatCreationDate(task.dataCriacao) }}</td>
+                <td class="actions col-center">
+                  <div class="action-group">
+                    <button type="button" class="btn-edit action-btn" (click)="openEditForm(task)">
+                      Editar
+                    </button>
+                    <button
+                      type="button"
+                      class="btn-delete action-btn"
+                      (click)="openDeleteModal(task)"
+                    >
+                      Excluir
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <footer class="table-footer">
+      <span>Mostrando {{ paginatedTasks().length }} de {{ totalItems() }} tarefas</span>
+      <div class="pagination">
+        <button type="button" (click)="previousPage()" [disabled]="page() === 1">&lt;</button>
+        <span>{{ page() }}</span>
+        <button type="button" (click)="nextPage()" [disabled]="page() === totalPages()">
+          &gt;
+        </button>
+      </div>
+    </footer>
+  </section>
+</main>
+
+@if (showForm()) {
+  <div class="modal-overlay" (click)="closeFormFromOverlay()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <app-task-form
+        [taskToEdit]="editingTask()"
+        [loading]="saveLoading()"
+        (save)="saveTask($event)"
+        (cancel)="closeForm()"
+      />
+    </div>
+  </div>
+}
+
+@if (taskToDelete(); as selectedTask) {
+  <div class="modal-overlay" (click)="closeDeleteModal()">
+    <div class="modal-content modal-confirm" (click)="$event.stopPropagation()">
+      <h3>Excluir tarefa</h3>
+      <p>
+        Tem certeza que deseja excluir a tarefa
+        <strong>"{{ selectedTask.titulo }}"</strong>?
+      </p>
+      <div class="confirm-actions">
+        <button type="button" class="confirm-cancel" (click)="closeDeleteModal()">Cancelar</button>
+        <button
+          type="button"
+          class="confirm-delete"
+          [disabled]="deleting()"
+          (click)="confirmDeleteTask()"
+        >
+          {{ deleting() ? 'Excluindo...' : 'Excluir' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}

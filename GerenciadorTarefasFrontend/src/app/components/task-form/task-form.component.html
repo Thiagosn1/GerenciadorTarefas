@@ -1,0 +1,48 @@
+<section class="form-card">
+  <h2>{{ isEditMode ? 'Editar tarefa' : 'Nova tarefa' }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label for="titulo">Titulo</label>
+    <input id="titulo" type="text" formControlName="titulo" placeholder="Ex.: Estudar Angular" />
+    @if (form.controls.titulo.touched && form.controls.titulo.errors?.['required']) {
+      <p class="error">Titulo e obrigatorio.</p>
+    }
+    @if (form.controls.titulo.touched && form.controls.titulo.errors?.['blank']) {
+      <p class="error">Titulo nao pode conter apenas espacos.</p>
+    }
+    @if (form.controls.titulo.touched && form.controls.titulo.errors?.['maxlength']) {
+      <p class="error">Titulo deve ter no maximo 120 caracteres.</p>
+    }
+
+    <label for="descricao">Descricao</label>
+    <textarea
+      id="descricao"
+      rows="3"
+      formControlName="descricao"
+      placeholder="Descreva rapidamente a tarefa"
+    ></textarea>
+    @if (form.controls.descricao.touched && form.controls.descricao.errors?.['required']) {
+      <p class="error">Descricao e obrigatoria.</p>
+    }
+    @if (form.controls.descricao.touched && form.controls.descricao.errors?.['blank']) {
+      <p class="error">Descricao nao pode conter apenas espacos.</p>
+    }
+    @if (form.controls.descricao.touched && form.controls.descricao.errors?.['maxlength']) {
+      <p class="error">Descricao deve ter no maximo 400 caracteres.</p>
+    }
+
+    <label for="status">Status</label>
+    <select id="status" formControlName="status">
+      @for (status of statusOptions; track status.value) {
+        <option [value]="status.value">{{ status.label }}</option>
+      }
+    </select>
+
+    <div class="actions">
+      <button type="button" class="btn-secondary" (click)="onCancel()">Cancelar</button>
+      <button type="submit" class="btn-primary" [disabled]="loading || form.invalid">
+        {{ loading ? 'Salvando...' : isEditMode ? 'Atualizar' : 'Criar tarefa' }}
+      </button>
+    </div>
+  </form>
+</section>
