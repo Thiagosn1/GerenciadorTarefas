@@ -1,0 +1,29 @@
+# Build output
+**/[Bb]in/
+**/[Oo]bj/
+
+# IDE and user-specific files
+.vs/
+*.user
+*.rsuser
+*.suo
+
+# Logs and test artifacts
+*.log
+TestResults/
+
+# Local database/cache files
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment and local secrets
+.env
+.env.*
+!.env.example
+**/appsettings.Development.json
+**/appsettings.*.local.json
+
+# OS files
+.DS_Store
+Thumbs.db
