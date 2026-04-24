@@ -1,6 +1,6 @@
 # Gerenciador de Tarefas
 
-Sistema completo para gerenciamento de tarefas, composto por uma API robusta em **ASP.NET Core** e uma interface reativa em **Angular**.
+Sistema simples para gerenciamento de tarefas, composto por uma API desenvolvida utilizando **ASP.NET Core** e o frontend utilizando **Angular**.
 
 ## 🚀 Estrutura do Projeto
 
@@ -14,7 +14,6 @@ Sistema completo para gerenciamento de tarefas, composto por uma API robusta em 
 - **Framework:** .NET 10
 - **Banco de Dados:** SQL Server LocalDB
 - **ORM:** Entity Framework Core
-- **Documentação:** Scalar OpenAPI Reference
 - **Recursos:** Auto-Migration e Seed Data (10 tarefas iniciais).
 
 ---
