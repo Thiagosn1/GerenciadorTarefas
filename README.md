@@ -1,4 +1,4 @@
-# Gerenciador de Tarefas (Fullstack)
+# Gerenciador de Tarefas
 
 Sistema completo para gerenciamento de tarefas, composto por uma API robusta em **ASP.NET Core** e uma interface reativa em **Angular**.
 
