@@ -38,7 +38,7 @@ dotnet run
 
 ## 💻 Frontend (Angular)
 
-- **Framework:** Angular 19+
+- **Framework:** Angular 21
 - **Funcionalidades:**
   - Listagem de tarefas via `HttpClient`.
   - Fluxo completo de Criar, Editar e Excluir.
