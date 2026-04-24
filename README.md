@@ -68,11 +68,3 @@ A URL base é `https://localhost:7197/api/tarefas`
 | **DELETE** | `/api/tarefas/{id}` | Remove uma tarefa             |
 
 ---
-
-## ✅ Status de Desenvolvimento
-
-- [x] Backend API (.NET 10)
-- [x] Banco de Dados com Seed Data (10 tarefas)
-- [x] Configuração de CORS para Angular
-- [x] Documentação Scalar/OpenAPI
-- [x] Frontend Angular (CRUD Completo)
