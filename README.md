@@ -1,10 +1,8 @@
 # GerenciadorTarefas
 
-Primeira etapa do projeto: API em ASP.NET Core para gerenciamento de tarefas.
+Projeto com API em ASP.NET Core e frontend em Angular para gerenciamento de tarefas.
 
-O frontend será adicionado depois neste mesmo repositório.
-
-## API (status atual)
+## API
 
 - Projeto: `GerenciadorTarefasApi`
 - Framework: `.NET 10`
@@ -34,7 +32,7 @@ Update-Database
 4. Defina o perfil `https` para execução.
 5. Pressione `F5` para rodar.
 
-URLs locais:
+URL local:
 
 - `https://localhost:7197`
 
@@ -57,3 +55,20 @@ Exemplo de payload (`POST`/`PUT`):
   "status": "Pendente"
 }
 ```
+
+## Frontend (Angular)
+
+- Projeto: `GerenciadorTarefasFrontend`
+- Framework: Angular `21.2.2`
+
+## Rodando o frontend
+
+```bash
+cd GerenciadorTarefasFrontend
+npm install
+npm start
+```
+
+URL local:
+
+- `http://localhost:4200`

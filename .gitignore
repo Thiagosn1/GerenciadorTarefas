@@ -1,12 +1,15 @@
-# Build output
-**/[Bb]in/
-**/[Oo]bj/
+# ========================================
+# Global
+# ========================================
 
-# IDE and user-specific files
-.vs/
-*.user
-*.rsuser
-*.suo
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment and local secrets
+.env
+.env.*
+!.env.example
 
 # Logs and test artifacts
 *.log
@@ -17,13 +20,61 @@ TestResults/
 *.sqlite
 *.sqlite3
 
-# Environment and local secrets
-.env
-.env.*
-!.env.example
+# ========================================
+# .NET / API
+# ========================================
+
+# Build output
+**/[Bb]in/
+**/[Oo]bj/
+
+# ASP.NET local configuration
 **/appsettings.Development.json
 **/appsettings.*.local.json
 
-# OS files
-.DS_Store
-Thumbs.db
+# ========================================
+# IDE and editor files
+# ========================================
+
+.vs/
+*.rsuser
+*.suo
+*.user
+
+# ========================================
+# Frontend (GerenciadorTarefasFrontend)
+# ========================================
+
+# Build/cache output
+/GerenciadorTarefasFrontend/.angular/cache
+/GerenciadorTarefasFrontend/bazel-out
+/GerenciadorTarefasFrontend/dist
+/GerenciadorTarefasFrontend/out-tsc
+/GerenciadorTarefasFrontend/tmp
+
+# Dependencies
+/GerenciadorTarefasFrontend/node_modules
+
+# Logs and artifacts
+/GerenciadorTarefasFrontend/connect.lock
+/GerenciadorTarefasFrontend/coverage
+/GerenciadorTarefasFrontend/libpeerconnection.log
+/GerenciadorTarefasFrontend/npm-debug.log
+/GerenciadorTarefasFrontend/testem.log
+/GerenciadorTarefasFrontend/yarn-error.log
+/GerenciadorTarefasFrontend/__screenshots__/
+
+# IDE/editor
+/GerenciadorTarefasFrontend/.c9/
+/GerenciadorTarefasFrontend/.classpath
+/GerenciadorTarefasFrontend/.history/*
+/GerenciadorTarefasFrontend/.idea/
+/GerenciadorTarefasFrontend/.project
+/GerenciadorTarefasFrontend/.sass-cache/
+/GerenciadorTarefasFrontend/.settings/
+/GerenciadorTarefasFrontend/.vscode/*
+/GerenciadorTarefasFrontend/*.launch
+/GerenciadorTarefasFrontend/*.sublime-workspace
+
+# Angular legacy
+/GerenciadorTarefasFrontend/typings
