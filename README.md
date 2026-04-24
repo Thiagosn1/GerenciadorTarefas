@@ -1,74 +1,78 @@
-# GerenciadorTarefas
+# Gerenciador de Tarefas (Fullstack)
 
-Projeto com API em ASP.NET Core e frontend em Angular para gerenciamento de tarefas.
+Sistema completo para gerenciamento de tarefas, composto por uma API robusta em **ASP.NET Core** e uma interface reativa em **Angular**.
 
-## API
+## 🚀 Estrutura do Projeto
 
-- Projeto: `GerenciadorTarefasApi`
-- Framework: `.NET 10`
-- Banco: SQL Server LocalDB
-- CRUD de tarefas implementado
-- Migração inicial criada
+- `/GerenciadorTarefasApi`: Backend (API REST)
+- `/GerenciadorTarefasFrontend`: Frontend (Angular SPA)
 
-## Rodando a API
+---
+
+## 🛠️ Backend (API)
+
+- **Framework:** .NET 10
+- **Banco de Dados:** SQL Server LocalDB
+- **ORM:** Entity Framework Core
+- **Documentação:** Scalar OpenAPI Reference
+- **Recursos:** Auto-Migration e Seed Data (10 tarefas iniciais).
+
+---
+
+### Como Rodar (Visual Studio)
+
+1. Abra o arquivo de solução (`.sln`) dentro da pasta `GerenciadorTarefasApi`.
+2. Certifique-se de que o **SQL LocalDB** está instalado em sua máquina.
+3. Pressione **F5**.
+   - O projeto já inclui as **Migrations** necessárias na pasta `/Migrations`.
+   - A API criará o banco de dados e as tabelas automaticamente ao iniciar.
+   - Documentação disponível em: `https://localhost:7197/scalar/v1`
+
+### Como Rodar (CLI)
 
 ```bash
 cd GerenciadorTarefasApi
-dotnet restore
-dotnet ef database update
 dotnet run
 ```
 
-### Rodando pelo Visual Studio
+---
 
-1. Abra a pasta `GerenciadorTarefasApi` no Visual Studio (ou a solução, se preferir).
-2. Aguarde o restore automático dos pacotes NuGet.
-3. No `Package Manager Console`, execute:
+## 💻 Frontend (Angular)
 
-```powershell
-Update-Database
-```
+- **Framework:** Angular 19+
+- **Funcionalidades:**
+  - Listagem de tarefas via `HttpClient`.
+  - Fluxo completo de Criar, Editar e Excluir.
+  - Validação de status ("Pendente" / "Concluída").
 
-4. Defina o perfil `https` para execução.
-5. Pressione `F5` para rodar.
+### Como Rodar
 
-URL local:
+1. Certifique-se de ter o **Node.js** instalado.
+2. Acesse a pasta: `cd GerenciadorTarefasFrontend`
+3. Instale as dependências: `npm install`
+4. Inicie o servidor: `npm start` ou `ng serve`
+5. Acesse: `http://localhost:4200`
 
-- `https://localhost:7197`
+---
 
-## Endpoints
+## 🔗 Endpoints da API
 
-Base: `api/tarefas`
+A URL base é `https://localhost:7197/api/tarefas`
 
-- `GET /api/tarefas`
-- `GET /api/tarefas/{id}`
-- `POST /api/tarefas`
-- `PUT /api/tarefas/{id}`
-- `DELETE /api/tarefas/{id}`
+| Método     | Endpoint            | Descrição                     |
+| :--------- | :------------------ | :---------------------------- |
+| **GET**    | `/api/tarefas`      | Lista todas as tarefas        |
+| **GET**    | `/api/tarefas/{id}` | Busca uma tarefa por ID       |
+| **POST**   | `/api/tarefas`      | Cria uma nova tarefa          |
+| **PUT**    | `/api/tarefas/{id}` | Atualiza uma tarefa existente |
+| **DELETE** | `/api/tarefas/{id}` | Remove uma tarefa             |
 
-Exemplo de payload (`POST`/`PUT`):
+---
 
-```json
-{
-  "titulo": "Estudar ASP.NET",
-  "descricao": "Revisar controllers",
-  "status": "Pendente"
-}
-```
+## ✅ Status de Desenvolvimento
 
-## Frontend (Angular)
-
-- Projeto: `GerenciadorTarefasFrontend`
-- Framework: Angular `21.2.2`
-
-## Rodando o frontend
-
-```bash
-cd GerenciadorTarefasFrontend
-npm install
-npm start
-```
-
-URL local:
-
-- `http://localhost:4200`
+- [x] Backend API (.NET 10)
+- [x] Banco de Dados com Seed Data (10 tarefas)
+- [x] Configuração de CORS para Angular
+- [x] Documentação Scalar/OpenAPI
+- [x] Frontend Angular (CRUD Completo)
